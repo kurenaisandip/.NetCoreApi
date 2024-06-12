@@ -1,6 +1,9 @@
 using GameStore.Api.Entities;
+using Microsoft.AspNetCore.Builder;
 
 const string GetGameEndPointName = "GetGameById";
+
+
 
 List<Games> games = new List<Games>
 {
@@ -37,9 +40,11 @@ List<Games> games = new List<Games>
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
-app.MapGet("/games", () => games);
-app.MapGet("/games/{id}", (int id) =>
+var group = app.MapGroup("/games");
+
+
+group.MapGet("/", () => games);
+group.MapGet("/{id}", (int id) =>
 {
     Games? game = games.Find(games => games.Id == id);
     if (game == null)
