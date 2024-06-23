@@ -3,7 +3,7 @@ using GameStore.Api.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddScoped<IGameRepository, InMemGameRepository>();
+builder.Services.AddSingleton<IGameRepository, InMemGameRepository>();
 
 var app = builder.Build();
 
