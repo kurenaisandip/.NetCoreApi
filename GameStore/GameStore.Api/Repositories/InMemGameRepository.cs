@@ -2,7 +2,7 @@ using GameStore.Api.Entities;
 
 namespace GameStore.Api.Repositories;
 
-public class InMemGameRepository
+public class InMemGameRepository : IGameRepository
 {
     private readonly List<Games> games = new List<Games>
 {
