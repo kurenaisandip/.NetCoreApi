@@ -1,3 +1,4 @@
+using GameStore.Api.Dtos;
 using GameStore.Api.Entities;
 using GameStore.Api.Repositories;
 
@@ -14,23 +15,33 @@ public static class GameEndPOints
             .WithParameterValidation();
 
 
-        group.MapGet("/", (IGameRepository repository) => repository.GetAll());
+        group.MapGet("/", (IGameRepository repository) =>
+        repository.GetAll().Select(Games => Games.AsDto()));
         group.MapGet("/{id}", (IGameRepository repository, int id) =>
         {
             Games? game = repository.Get(id);
-            return game is not null ? Results.Ok(game) : Results.NotFound();
+            return game is not null ? Results.Ok(game.AsDto()) : Results.NotFound();
         }).WithName(GetGameEndPointName);
 
-        routes.MapPost("/game", (IGameRepository repository, Games game) =>
+        routes.MapPost("/game", (IGameRepository repository, CreateGameDto gameDto) =>
         {
-            repository.Create(game);
-            return Results.CreatedAtRoute(GetGameEndPointName, new { id = game.Id }, game);
+            Games games = new()
+            {
+                Name = gameDto.Name,
+                Genre = gameDto.Genre,
+                Price = gameDto.Price,
+                ReleaseDate = gameDto.ReleaseDate,
+                ImageUri = gameDto.ImageUri
+            };
+
+            repository.Create(games);
+            return Results.CreatedAtRoute(GetGameEndPointName, new { id = games.Id }, games);
         });
 
-        routes.MapPut("/game/{id}", (IGameRepository repository, int id, Games updatedGame) =>
+        routes.MapPut("/game/{id}", (IGameRepository repository, int id, UpdateGameDto updatedGameDto) =>
         {
             // Validate input
-            if (updatedGame == null)
+            if (updatedGameDto == null)
             {
                 return Results.BadRequest("Invalid game data provided.");
             }
@@ -42,11 +53,11 @@ public static class GameEndPOints
             }
 
             // Update existing game
-            existingGame.Name = updatedGame.Name;
-            existingGame.Genre = updatedGame.Genre;
-            existingGame.Price = updatedGame.Price;
-            existingGame.ReleaseDate = updatedGame.ReleaseDate;
-            existingGame.ImageUri = updatedGame.ImageUri;
+            existingGame.Name = updatedGameDto.Name;
+            existingGame.Genre = updatedGameDto.Genre;
+            existingGame.Price = updatedGameDto.Price;
+            existingGame.ReleaseDate = updatedGameDto.ReleaseDate;
+            existingGame.ImageUri = updatedGameDto.ImageUri;
 
             repository.Update(existingGame);
 
