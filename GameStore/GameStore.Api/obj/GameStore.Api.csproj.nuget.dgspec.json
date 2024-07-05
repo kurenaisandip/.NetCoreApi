@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\Personal Projects\\.NetCoreApi\\GameStore\\GameStore.Api\\GameStore.Api.csproj": {}
+    "D:\\Personal Projects\\.NetCoreApi\\GameStore\\GameStore.Api\\GameStore.Api.csproj": {}
   },
   "projects": {
-    "d:\\Personal Projects\\.NetCoreApi\\GameStore\\GameStore.Api\\GameStore.Api.csproj": {
+    "D:\\Personal Projects\\.NetCoreApi\\GameStore\\GameStore.Api\\GameStore.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\Personal Projects\\.NetCoreApi\\GameStore\\GameStore.Api\\GameStore.Api.csproj",
+        "projectUniqueName": "D:\\Personal Projects\\.NetCoreApi\\GameStore\\GameStore.Api\\GameStore.Api.csproj",
         "projectName": "GameStore.Api",
-        "projectPath": "d:\\Personal Projects\\.NetCoreApi\\GameStore\\GameStore.Api\\GameStore.Api.csproj",
+        "projectPath": "D:\\Personal Projects\\.NetCoreApi\\GameStore\\GameStore.Api\\GameStore.Api.csproj",
         "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
-        "outputPath": "d:\\Personal Projects\\.NetCoreApi\\GameStore\\GameStore.Api\\obj\\",
+        "outputPath": "D:\\Personal Projects\\.NetCoreApi\\GameStore\\GameStore.Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ACER\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -45,6 +45,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
             "MinimalApis.Extensions": {
               "target": "Package",
               "version": "[0.11.0, )"
