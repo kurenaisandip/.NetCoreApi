@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Personal Projects\\.NetCoreApi\\GameStore\\GameStore.Api\\GameStore.Api.csproj": {}
+    "d:\\Personal Projects\\.NetCoreApi\\GameStore\\GameStore.Api\\GameStore.Api.csproj": {}
   },
   "projects": {
-    "D:\\Personal Projects\\.NetCoreApi\\GameStore\\GameStore.Api\\GameStore.Api.csproj": {
+    "d:\\Personal Projects\\.NetCoreApi\\GameStore\\GameStore.Api\\GameStore.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Personal Projects\\.NetCoreApi\\GameStore\\GameStore.Api\\GameStore.Api.csproj",
+        "projectUniqueName": "d:\\Personal Projects\\.NetCoreApi\\GameStore\\GameStore.Api\\GameStore.Api.csproj",
         "projectName": "GameStore.Api",
-        "projectPath": "D:\\Personal Projects\\.NetCoreApi\\GameStore\\GameStore.Api\\GameStore.Api.csproj",
+        "projectPath": "d:\\Personal Projects\\.NetCoreApi\\GameStore\\GameStore.Api\\GameStore.Api.csproj",
         "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
-        "outputPath": "D:\\Personal Projects\\.NetCoreApi\\GameStore\\GameStore.Api\\obj\\",
+        "outputPath": "d:\\Personal Projects\\.NetCoreApi\\GameStore\\GameStore.Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ACER\\AppData\\Roaming\\NuGet\\NuGet.Config",
