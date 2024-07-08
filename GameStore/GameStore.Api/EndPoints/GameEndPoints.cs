@@ -15,15 +15,15 @@ public static class GameEndPOints
             .WithParameterValidation();
 
 
-        group.MapGet("/", (IGameRepository repository) =>
-        repository.GetAll().Select(Games => Games.AsDto()));
-        group.MapGet("/{id}", (IGameRepository repository, int id) =>
+        group.MapGet("/", async (IGameRepository repository) =>
+        (await repository.GetAll()).Select(Games => Games.AsDto()));
+        group.MapGet("/{id}", async (IGameRepository repository, int id) =>
         {
-            Games? game = repository.Get(id);
+            Games? game = await repository.GetAsync(id);
             return game is not null ? Results.Ok(game.AsDto()) : Results.NotFound();
         }).WithName(GetGameEndPointName);
 
-        routes.MapPost("/game", (IGameRepository repository, CreateGameDto gameDto) =>
+        routes.MapPost("/game", async (IGameRepository repository, CreateGameDto gameDto) =>
         {
             Games games = new()
             {
@@ -34,11 +34,11 @@ public static class GameEndPOints
                 ImageUri = gameDto.ImageUri
             };
 
-            repository.Create(games);
+            await repository.CreateAsync(games);
             return Results.CreatedAtRoute(GetGameEndPointName, new { id = games.Id }, games);
         });
 
-        routes.MapPut("/game/{id}", (IGameRepository repository, int id, UpdateGameDto updatedGameDto) =>
+        routes.MapPut("/game/{id}", async (IGameRepository repository, int id, UpdateGameDto updatedGameDto) =>
         {
             // Validate input
             if (updatedGameDto == null)
@@ -46,7 +46,7 @@ public static class GameEndPOints
                 return Results.BadRequest("Invalid game data provided.");
             }
 
-            Games? existingGame = repository.Get(id);
+            Games? existingGame = await repository.GetAsync(id);
             if (existingGame == null)
             {
                 return Results.NotFound("Game not found with the provided ID.");
@@ -59,20 +59,20 @@ public static class GameEndPOints
             existingGame.ReleaseDate = updatedGameDto.ReleaseDate;
             existingGame.ImageUri = updatedGameDto.ImageUri;
 
-            repository.Update(existingGame);
+            await repository.UpdateAsync(existingGame);
 
             // Return success
             return Results.NoContent();
         });
 
 
-        routes.MapDelete("/game/{id}", (IGameRepository repository, int id) =>
+        routes.MapDelete("/game/{id}", async (IGameRepository repository, int id) =>
         {
 
-            Games? game = repository.Get(id);
+            Games? game = await repository.GetAsync(id);
             if (game is not null)
             {
-                repository.Delete(id);
+                await repository.DeleteAsync(id);
             }
 
 

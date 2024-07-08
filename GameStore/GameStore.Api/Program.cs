@@ -14,7 +14,7 @@ var app = builder.Build();
 //     dbContext.Database.Migrate();
 // }
 
-app.Services.InitializeDb();
+await app.Services.InitializeDbAsync();
 
 app.MapGamesEndPoints();
 
